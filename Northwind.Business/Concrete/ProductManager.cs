@@ -1,6 +1,8 @@
-﻿using Northwind.Entities.Concrete;
+﻿
+
 using Northwind.DataAccess.Abstract;
-using Northwind.DataAccess.Concrete.EntityFramewrok;
+using Northwind.Entities.Concrete;
+using NorthWind.Business.Abstract;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Northwind.Business.Concrete
 {
-    public class ProductManager
+    public class ProductManager:IProductService
     {
         // ProductEFDAL _productDAL = new ProductEFDAL();
         private IProductDAL _productDAL;

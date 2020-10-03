@@ -1,15 +1,15 @@
 ﻿using Northwind.Entities.Concrete;
-using Nortwind.DataAccess.Abstract;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Northwind.DataAccess.Abstract
+namespace NorthWind.Business.Abstract
 {
-    public interface IProductDAL:IEntityRepository<Product>
+    public interface IProductService
     {
-     
+        List<Product> GetAll();
+        void Delete(Product product);
     }
 }
