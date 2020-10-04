@@ -1,6 +1,6 @@
 ﻿namespace Northwind.WebFormsUI
 {
-    partial class Form1
+    partial class AppInterface
     {
         /// <summary>
         /// Required designer variable.
@@ -48,6 +48,7 @@
             this.lblCStock = new System.Windows.Forms.Label();
             this.lblCPorductName = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.btnRemoveProduct = new System.Windows.Forms.Button();
             this.cmbUCategoryId = new System.Windows.Forms.ComboBox();
             this.txtUQuantity = new System.Windows.Forms.TextBox();
             this.btnProductUpdate = new System.Windows.Forms.Button();
@@ -59,7 +60,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.btnRemoveProduct = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgwProduct)).BeginInit();
             this.gbxCategory.SuspendLayout();
             this.gbxProduct.SuspendLayout();
@@ -111,6 +111,7 @@
             // 
             // cbxCategory
             // 
+            this.cbxCategory.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxCategory.FormattingEnabled = true;
             this.cbxCategory.Location = new System.Drawing.Point(89, 25);
             this.cbxCategory.Name = "cbxCategory";
@@ -169,6 +170,7 @@
             // 
             // cbxCategoryId
             // 
+            this.cbxCategoryId.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxCategoryId.FormattingEnabled = true;
             this.cbxCategoryId.Location = new System.Drawing.Point(86, 61);
             this.cbxCategoryId.Name = "cbxCategoryId";
@@ -269,8 +271,19 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Ürün Güncelle";
             // 
+            // btnRemoveProduct
+            // 
+            this.btnRemoveProduct.Location = new System.Drawing.Point(350, 96);
+            this.btnRemoveProduct.Name = "btnRemoveProduct";
+            this.btnRemoveProduct.Size = new System.Drawing.Size(102, 32);
+            this.btnRemoveProduct.TabIndex = 11;
+            this.btnRemoveProduct.Text = "Sil";
+            this.btnRemoveProduct.UseVisualStyleBackColor = true;
+            this.btnRemoveProduct.Click += new System.EventHandler(this.btnRemoveProduct_Click);
+            // 
             // cmbUCategoryId
             // 
+            this.cmbUCategoryId.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbUCategoryId.FormattingEnabled = true;
             this.cmbUCategoryId.Location = new System.Drawing.Point(86, 61);
             this.cmbUCategoryId.Name = "cmbUCategoryId";
@@ -360,17 +373,7 @@
             this.label5.TabIndex = 3;
             this.label5.Text = "Ürün Adı";
             // 
-            // btnRemoveProduct
-            // 
-            this.btnRemoveProduct.Location = new System.Drawing.Point(350, 96);
-            this.btnRemoveProduct.Name = "btnRemoveProduct";
-            this.btnRemoveProduct.Size = new System.Drawing.Size(102, 32);
-            this.btnRemoveProduct.TabIndex = 11;
-            this.btnRemoveProduct.Text = "Sil";
-            this.btnRemoveProduct.UseVisualStyleBackColor = true;
-            this.btnRemoveProduct.Click += new System.EventHandler(this.btnRemoveProduct_Click);
-            // 
-            // Form1
+            // AppInterface
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -380,9 +383,12 @@
             this.Controls.Add(this.gbxProduct);
             this.Controls.Add(this.gbxCategory);
             this.Controls.Add(this.dgwProduct);
-            this.Name = "Form1";
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
+            this.Name = "AppInterface";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Ürünler";
+            this.Text = "Northwind ";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgwProduct)).EndInit();
             this.gbxCategory.ResumeLayout(false);

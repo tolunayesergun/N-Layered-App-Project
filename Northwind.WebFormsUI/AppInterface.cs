@@ -3,6 +3,7 @@ using Northwind.DataAccess.Concrete.EntityFramewrok;
 using Northwind.Entities.Concrete;
 using NorthWind.Business.Abstract;
 using NorthWind.Business.Concrete;
+using NorthWind.Business.DependencyResolvers.Ninject;
 using Nortwind.DataAccess.Concrete.EntityFramework;
 using System;
 using System.Collections.Generic;
@@ -16,13 +17,13 @@ using System.Windows.Forms;
 
 namespace Northwind.WebFormsUI
 {
-    public partial class Form1 : Form
+    public partial class AppInterface : Form
     {
-        public Form1()
+        public AppInterface()
         {
             InitializeComponent();
-            _productService = new ProductManager(new EfProductDAL());
-            _categoryService = new CategoryManager(new EfCategoryDAL());
+            _productService = InstanceFactory.GetInstance<IProductService>();
+            _categoryService = InstanceFactory.GetInstance<ICategoryService>();
         }
 
         IProductService _productService;
@@ -77,30 +78,42 @@ namespace Northwind.WebFormsUI
 
         private void btProductAdd_Click(object sender, EventArgs e)
         {
-            _productService.Add(new Product {
-                CategoryId=Convert.ToInt32(cbxCategoryId.SelectedValue),
-                ProductName=txtProductName.Text,
-                QuantityPerUnit=txtQuantity.Text,
-                UnitPrice=Convert.ToDecimal(txtUnitPrice.Text),
-                UnitsInStock=Convert.ToInt16(txtStock.Text)
-            });
-            LoadProducts();
-            MessageBox.Show("Ürün Eklendi");
+            try
+            {
+                _productService.Add(new Product
+                {
+                    CategoryId = Convert.ToInt32(cbxCategoryId.SelectedValue),
+                    ProductName = txtProductName.Text,
+                    QuantityPerUnit = txtQuantity.Text,
+                    UnitPrice = Convert.ToDecimal(txtUnitPrice.Text),
+                    UnitsInStock = Convert.ToInt16(txtStock.Text)
+                });
+                LoadProducts();
+                MessageBox.Show("Ürün Eklendi");
+            }
+
+            catch (Exception exc) { MessageBox.Show(exc.Message); }
+
         }
 
         private void btnProductUpdate_Click(object sender, EventArgs e)
         {
-            _productService.Update(new Product {
-                ProductId=Convert.ToInt32(dgwProduct.CurrentRow.Cells[0].Value),
-                ProductName=txtUProductName.Text,
-                UnitPrice=Convert.ToDecimal(txtUPrice.Text),
-                CategoryId=Convert.ToInt32(cmbUCategoryId.SelectedValue),
-                QuantityPerUnit=txtUQuantity.Text,
-                UnitsInStock=Convert.ToInt16(txtUStock.Text)
+            try
+            {
+                _productService.Update(new Product
+                {
+                    ProductId = Convert.ToInt32(dgwProduct.CurrentRow.Cells[0].Value),
+                    ProductName = txtUProductName.Text,
+                    UnitPrice = Convert.ToDecimal(txtUPrice.Text),
+                    CategoryId = Convert.ToInt32(cmbUCategoryId.SelectedValue),
+                    QuantityPerUnit = txtUQuantity.Text,
+                    UnitsInStock = Convert.ToInt16(txtUStock.Text)
                 });
 
-            LoadProducts();
-            MessageBox.Show("Ürün Güncellendi");
+                LoadProducts();
+                MessageBox.Show("Ürün Güncellendi");
+            }
+            catch (Exception exc) { MessageBox.Show(exc.Message); }
         }
 
         private void btnRemoveProduct_Click(object sender, EventArgs e)

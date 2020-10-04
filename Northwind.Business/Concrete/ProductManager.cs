@@ -1,8 +1,11 @@
 ﻿
 
+using FluentValidation;
 using Northwind.DataAccess.Abstract;
 using Northwind.Entities.Concrete;
 using NorthWind.Business.Abstract;
+using NorthWind.Business.Utilities;
+using NorthWind.Business.ValidationRules.FluentValidation;
 using Nortwhind.Entities.Concrete;
 using System;
 using System.Collections.Generic;
@@ -40,25 +43,20 @@ namespace Northwind.Business.Concrete
 
         public void Add(Product product)
         {
+            ValidationTool.Validate(new ProductValidator(), product);
             _productDAL.Add(product);
         }
 
         public void Update(Product product)
         {
+            ValidationTool.Validate(new ProductValidator(), product);
             _productDAL.Update(product);
         }
 
         public void Delete(Product product)
         {
-            try
-            {
-                _productDAL.Delete(product);
-            }
-            catch (DbUpdateException)
-            {
-                throw new Exception("Silme Başarısız Oldu");
-            }
-            
+            try{_productDAL.Delete(product);}
+            catch (DbUpdateException){throw new Exception("Silme Başarısız Oldu");}      
         }
     }
 }
