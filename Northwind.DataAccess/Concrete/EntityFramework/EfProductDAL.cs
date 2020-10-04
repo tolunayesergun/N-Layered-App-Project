@@ -11,7 +11,7 @@ using Nortwind.DataAccess.Concrete.EntityFramework;
 
 namespace Northwind.DataAccess.Concrete.EntityFramewrok
 {
-    public class ProductEFDAL :EfEntityRepositoryBase<Product,NorthwindContext>, IProductDAL
+    public class EfProductDAL :EfEntityRepositoryBase<Product,NorthwindContext>, IProductDAL
     {
     }
 }
